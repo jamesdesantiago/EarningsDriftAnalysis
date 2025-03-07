@@ -8,6 +8,8 @@ from dash.dependencies import Input, Output, State
 import yfinance as yf
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import json
+import os
 
 # --------------------------------------------------------------------------------
 # GLOBAL SETTINGS & CONFIG
@@ -43,7 +45,18 @@ selected_date = None
 
 # Define the scope and credentials
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("assets/gsheets_credentials.json", scope)
+
+# Load credentials from the environment variable
+gsheets_credentials_json = os.getenv("GSHEETS_CREDENTIALS")
+if gsheets_credentials_json is None:
+    raise ValueError("Missing GSHEETS_CREDENTIALS environment variable")
+
+# Convert JSON string back to dictionary
+gsheets_credentials = json.loads(gsheets_credentials_json)
+
+# Authenticate with Google Sheets API
+creds = ServiceAccountCredentials.from_json_keyfile_dict(gsheets_credentials, scope)
+
 client = gspread.authorize(creds)
 
 # Open the Google Sheet
