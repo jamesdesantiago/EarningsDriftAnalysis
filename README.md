@@ -3,6 +3,8 @@
 ## Overview
 Earnings Drift Analyzer is a Dash web application that visualizes stock earnings drift analysis using historical earnings data and index movements. The application fetches earnings data from Google Sheets and index data from Yahoo Finance to create insightful visualizations and filter earnings trends based on various metrics.
 
+Note: Without properly formatting your google sheets document and processin earnings data beforehand, you will will struggle to use the script. There's a significan amount of work that goes into processing the earnings data and building a database. This script only helps to display this data in a user friendly way.
+
 ## Features
 - Fetch earnings data from a Google Sheet.
 - Retrieve historical stock index data from Yahoo Finance.
