@@ -745,4 +745,8 @@ def download_filtered_data(
 # --------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    app.run_server(debug=True)  # Set debug=True for better error reporting
+    app.run_server(debug=True)
+
+# Expose the Flask server for Render
+server = app.server
+
